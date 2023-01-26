@@ -1,0 +1,20 @@
+name: redash
+on:
+  push:
+
+jobs:
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Checkout getredash/setup
+        uses: actions/checkout@v3
+        with:
+          repository: getredash/setup
+          path: setup
+      - name: Setup
+        run: bash setup.sh
+        working-directory: ./setup
+      - name: ls
+        run: ls -l /opt/redash
